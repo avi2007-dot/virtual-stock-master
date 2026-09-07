@@ -15,6 +15,8 @@ import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppMarketRouteImport } from './routes/app.market'
+import { Route as AppTradeRouteImport } from './routes/app.trade'
+import { Route as AppStockSymbolRouteImport } from './routes/app.stock.$symbol'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +48,16 @@ const AppMarketRoute = AppMarketRouteImport.update({
   path: '/market',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTradeRoute = AppTradeRouteImport.update({
+  id: '/trade',
+  path: '/trade',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStockSymbolRoute = AppStockSymbolRouteImport.update({
+  id: '/stock/$symbol',
+  path: '/stock/$symbol',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,14 +65,18 @@ export interface FileRoutesByFullPath {
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
   '/app/market': typeof AppMarketRoute
+  '/app/trade': typeof AppTradeRoute
   '/app/': typeof AppIndexRoute
+  '/app/stock/$symbol': typeof AppStockSymbolRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
   '/app/market': typeof AppMarketRoute
+  '/app/trade': typeof AppTradeRoute
   '/app': typeof AppIndexRoute
+  '/app/stock/$symbol': typeof AppStockSymbolRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,13 +85,30 @@ export interface FileRoutesById {
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
   '/app/market': typeof AppMarketRoute
+  '/app/trade': typeof AppTradeRoute
   '/app/': typeof AppIndexRoute
+  '/app/stock/$symbol': typeof AppStockSymbolRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/how-it-works' | '/login' | '/app/market' | '/app/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/how-it-works'
+    | '/login'
+    | '/app/market'
+    | '/app/trade'
+    | '/app/'
+    | '/app/stock/$symbol'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/how-it-works' | '/login' | '/app/market' | '/app'
+  to:
+    | '/'
+    | '/how-it-works'
+    | '/login'
+    | '/app/market'
+    | '/app/trade'
+    | '/app'
+    | '/app/stock/$symbol'
   id:
     | '__root__'
     | '/'
@@ -83,7 +116,9 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/login'
     | '/app/market'
+    | '/app/trade'
     | '/app/'
+    | '/app/stock/$symbol'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -137,17 +172,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppMarketRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/trade': {
+      id: '/app/trade'
+      path: '/trade'
+      fullPath: '/app/trade'
+      preLoaderRoute: typeof AppTradeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/stock/$symbol': {
+      id: '/app/stock/$symbol'
+      path: '/stock/$symbol'
+      fullPath: '/app/stock/$symbol'
+      preLoaderRoute: typeof AppStockSymbolRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
   AppMarketRoute: typeof AppMarketRoute
+  AppTradeRoute: typeof AppTradeRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppStockSymbolRoute: typeof AppStockSymbolRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppMarketRoute: AppMarketRoute,
+  AppTradeRoute: AppTradeRoute,
   AppIndexRoute: AppIndexRoute,
+  AppStockSymbolRoute: AppStockSymbolRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

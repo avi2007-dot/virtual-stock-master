@@ -175,8 +175,8 @@ export function PageHead({
   right,
 }: {
   title: string;
-  sub?: string;
-  right?: React.ReactNode;
+  sub?: string | undefined;
+  right?: React.ReactNode | undefined;
 }) {
   return (
     <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
@@ -197,8 +197,8 @@ export function Stat({
 }: {
   label: string;
   value: React.ReactNode;
-  tone?: "gain" | "loss" | "warn";
-  hint?: string;
+  tone?: "gain" | "loss" | "warn" | undefined;
+  hint?: string | undefined;
 }) {
   return (
     <div className="panel p-4">
