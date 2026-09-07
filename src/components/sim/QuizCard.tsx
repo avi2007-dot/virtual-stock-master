@@ -73,10 +73,23 @@ export function DecisionForm({
   const [text, setText] = useState(saved?.justification ?? "");
 
   const submit = () => {
-    if (!choice) return toast.error("Select a decision first.");
-    if (reasons && !reason) return toast.error("Select a reason for your decision.");
-    if (text.trim().length < 10) return toast.error("Add a short justification (at least 10 characters).");
-    saveResponse(responseKey, { choice, reason: reason ?? undefined, justification: text.trim() });
+    if (!choice) {
+      toast.error("Select a decision first.");
+      return;
+    }
+    if (reasons && !reason) {
+      toast.error("Select a reason for your decision.");
+      return;
+    }
+    if (text.trim().length < 10) {
+      toast.error("Add a short justification (at least 10 characters).");
+      return;
+    }
+    saveResponse(responseKey, {
+      choice,
+      ...(reason ? { reason } : {}),
+      justification: text.trim(),
+    });
     toast.success("Response saved for assessment.");
   };
 
@@ -135,9 +148,15 @@ export function ConceptQuestion({
   const [text, setText] = useState(saved?.justification ?? "");
 
   const submit = () => {
-    if (!choice) return toast.error("Select an option.");
-    if (followUp && text.trim().length < 5) return toast.error("Answer the follow-up question.");
-    saveResponse(responseKey, { choice, justification: text.trim() || undefined });
+    if (!choice) {
+      toast.error("Select an option.");
+      return;
+    }
+    if (followUp && text.trim().length < 5) {
+      toast.error("Answer the follow-up question.");
+      return;
+    }
+    saveResponse(responseKey, { choice, ...(text.trim() ? { justification: text.trim() } : {}) });
     if (choice === answer) toast.success("Correct — response recorded.");
     else toast.warning("Response recorded. Review this concept.");
   };
