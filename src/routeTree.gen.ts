@@ -15,6 +15,9 @@ import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppMarketRouteImport } from './routes/app.market'
+import { Route as AppOrdersRouteImport } from './routes/app.orders'
+import { Route as AppPortfolioRouteImport } from './routes/app.portfolio'
+import { Route as AppRoundsRouteImport } from './routes/app.rounds'
 import { Route as AppTradeRouteImport } from './routes/app.trade'
 import { Route as AppStockSymbolRouteImport } from './routes/app.stock.$symbol'
 
@@ -48,6 +51,21 @@ const AppMarketRoute = AppMarketRouteImport.update({
   path: '/market',
   getParentRoute: () => AppRoute,
 } as any)
+const AppOrdersRoute = AppOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPortfolioRoute = AppPortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRoundsRoute = AppRoundsRouteImport.update({
+  id: '/rounds',
+  path: '/rounds',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppTradeRoute = AppTradeRouteImport.update({
   id: '/trade',
   path: '/trade',
@@ -65,6 +83,9 @@ export interface FileRoutesByFullPath {
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
   '/app/market': typeof AppMarketRoute
+  '/app/orders': typeof AppOrdersRoute
+  '/app/portfolio': typeof AppPortfolioRoute
+  '/app/rounds': typeof AppRoundsRoute
   '/app/trade': typeof AppTradeRoute
   '/app/': typeof AppIndexRoute
   '/app/stock/$symbol': typeof AppStockSymbolRoute
@@ -74,6 +95,9 @@ export interface FileRoutesByTo {
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
   '/app/market': typeof AppMarketRoute
+  '/app/orders': typeof AppOrdersRoute
+  '/app/portfolio': typeof AppPortfolioRoute
+  '/app/rounds': typeof AppRoundsRoute
   '/app/trade': typeof AppTradeRoute
   '/app': typeof AppIndexRoute
   '/app/stock/$symbol': typeof AppStockSymbolRoute
@@ -85,6 +109,9 @@ export interface FileRoutesById {
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
   '/app/market': typeof AppMarketRoute
+  '/app/orders': typeof AppOrdersRoute
+  '/app/portfolio': typeof AppPortfolioRoute
+  '/app/rounds': typeof AppRoundsRoute
   '/app/trade': typeof AppTradeRoute
   '/app/': typeof AppIndexRoute
   '/app/stock/$symbol': typeof AppStockSymbolRoute
@@ -97,6 +124,9 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/login'
     | '/app/market'
+    | '/app/orders'
+    | '/app/portfolio'
+    | '/app/rounds'
     | '/app/trade'
     | '/app/'
     | '/app/stock/$symbol'
@@ -106,6 +136,9 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/login'
     | '/app/market'
+    | '/app/orders'
+    | '/app/portfolio'
+    | '/app/rounds'
     | '/app/trade'
     | '/app'
     | '/app/stock/$symbol'
@@ -116,6 +149,9 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/login'
     | '/app/market'
+    | '/app/orders'
+    | '/app/portfolio'
+    | '/app/rounds'
     | '/app/trade'
     | '/app/'
     | '/app/stock/$symbol'
@@ -172,6 +208,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppMarketRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/orders': {
+      id: '/app/orders'
+      path: '/orders'
+      fullPath: '/app/orders'
+      preLoaderRoute: typeof AppOrdersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/portfolio': {
+      id: '/app/portfolio'
+      path: '/portfolio'
+      fullPath: '/app/portfolio'
+      preLoaderRoute: typeof AppPortfolioRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/rounds': {
+      id: '/app/rounds'
+      path: '/rounds'
+      fullPath: '/app/rounds'
+      preLoaderRoute: typeof AppRoundsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/trade': {
       id: '/app/trade'
       path: '/trade'
@@ -191,6 +248,9 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppMarketRoute: typeof AppMarketRoute
+  AppOrdersRoute: typeof AppOrdersRoute
+  AppPortfolioRoute: typeof AppPortfolioRoute
+  AppRoundsRoute: typeof AppRoundsRoute
   AppTradeRoute: typeof AppTradeRoute
   AppIndexRoute: typeof AppIndexRoute
   AppStockSymbolRoute: typeof AppStockSymbolRoute
@@ -198,6 +258,9 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppMarketRoute: AppMarketRoute,
+  AppOrdersRoute: AppOrdersRoute,
+  AppPortfolioRoute: AppPortfolioRoute,
+  AppRoundsRoute: AppRoundsRoute,
   AppTradeRoute: AppTradeRoute,
   AppIndexRoute: AppIndexRoute,
   AppStockSymbolRoute: AppStockSymbolRoute,

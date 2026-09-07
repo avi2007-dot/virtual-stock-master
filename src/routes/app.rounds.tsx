@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { createFileRoute as _unused } from "@tanstack/react-router";
 import { useSim } from "@/lib/sim/store";
 import { PageHead } from "@/components/sim/Shell";
 import { DecisionForm, ConceptQuestion } from "@/components/sim/QuizCard";
@@ -253,5 +252,3 @@ function CommodityBoard() {
     </div>
   );
 }
-
-void _unused;
