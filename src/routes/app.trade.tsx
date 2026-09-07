@@ -22,8 +22,8 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/trade")({
   validateSearch: (search: Record<string, unknown>) => ({
-    symbol: typeof search.symbol === "string" ? search.symbol : "ALPHAM",
-    side: search.side === "SELL" ? ("SELL" as const) : ("BUY" as const),
+    symbol: typeof search["symbol"] === "string" ? search["symbol"] : "ALPHAM",
+    side: search["side"] === "SELL" ? ("SELL" as const) : ("BUY" as const),
   }),
   head: () => ({
     meta: [
@@ -186,7 +186,7 @@ function TradePage() {
             <Stat
               label="Est. Balance"
               value={inr(estBalance)}
-              tone={estBalance < 0 ? "loss" : undefined}
+              {...(estBalance < 0 ? { tone: "loss" as const } : {})}
             />
           </div>
 

@@ -45,7 +45,9 @@ function Dashboard() {
         right={
           <div className="flex gap-2">
             <Button asChild size="sm">
-              <Link to="/app/trade">Place an Order</Link>
+              <Link to="/app/trade" search={{ symbol: "ALPHAM", side: "BUY" }}>
+                Place an Order
+              </Link>
             </Button>
             <Button asChild size="sm" variant="outline">
               <Link to="/app/rounds">Go to Rounds</Link>
