@@ -14,10 +14,12 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAnalysisRouteImport } from './routes/app.analysis'
 import { Route as AppMarketRouteImport } from './routes/app.market'
 import { Route as AppOrdersRouteImport } from './routes/app.orders'
 import { Route as AppPortfolioRouteImport } from './routes/app.portfolio'
 import { Route as AppRoundsRouteImport } from './routes/app.rounds'
+import { Route as AppSettlementRouteImport } from './routes/app.settlement'
 import { Route as AppTradeRouteImport } from './routes/app.trade'
 import { Route as AppStockSymbolRouteImport } from './routes/app.stock.$symbol'
 
@@ -46,6 +48,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAnalysisRoute = AppAnalysisRouteImport.update({
+  id: '/analysis',
+  path: '/analysis',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppMarketRoute = AppMarketRouteImport.update({
   id: '/market',
   path: '/market',
@@ -66,6 +73,11 @@ const AppRoundsRoute = AppRoundsRouteImport.update({
   path: '/rounds',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettlementRoute = AppSettlementRouteImport.update({
+  id: '/settlement',
+  path: '/settlement',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppTradeRoute = AppTradeRouteImport.update({
   id: '/trade',
   path: '/trade',
@@ -82,10 +94,12 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
+  '/app/analysis': typeof AppAnalysisRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
   '/app/rounds': typeof AppRoundsRoute
+  '/app/settlement': typeof AppSettlementRoute
   '/app/trade': typeof AppTradeRoute
   '/app/': typeof AppIndexRoute
   '/app/stock/$symbol': typeof AppStockSymbolRoute
@@ -94,10 +108,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
+  '/app/analysis': typeof AppAnalysisRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
   '/app/rounds': typeof AppRoundsRoute
+  '/app/settlement': typeof AppSettlementRoute
   '/app/trade': typeof AppTradeRoute
   '/app': typeof AppIndexRoute
   '/app/stock/$symbol': typeof AppStockSymbolRoute
@@ -108,10 +124,12 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
+  '/app/analysis': typeof AppAnalysisRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
   '/app/rounds': typeof AppRoundsRoute
+  '/app/settlement': typeof AppSettlementRoute
   '/app/trade': typeof AppTradeRoute
   '/app/': typeof AppIndexRoute
   '/app/stock/$symbol': typeof AppStockSymbolRoute
@@ -123,10 +141,12 @@ export interface FileRouteTypes {
     | '/app'
     | '/how-it-works'
     | '/login'
+    | '/app/analysis'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
     | '/app/rounds'
+    | '/app/settlement'
     | '/app/trade'
     | '/app/'
     | '/app/stock/$symbol'
@@ -135,10 +155,12 @@ export interface FileRouteTypes {
     | '/'
     | '/how-it-works'
     | '/login'
+    | '/app/analysis'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
     | '/app/rounds'
+    | '/app/settlement'
     | '/app/trade'
     | '/app'
     | '/app/stock/$symbol'
@@ -148,10 +170,12 @@ export interface FileRouteTypes {
     | '/app'
     | '/how-it-works'
     | '/login'
+    | '/app/analysis'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
     | '/app/rounds'
+    | '/app/settlement'
     | '/app/trade'
     | '/app/'
     | '/app/stock/$symbol'
@@ -201,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/analysis': {
+      id: '/app/analysis'
+      path: '/analysis'
+      fullPath: '/app/analysis'
+      preLoaderRoute: typeof AppAnalysisRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/market': {
       id: '/app/market'
       path: '/market'
@@ -229,6 +260,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRoundsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/settlement': {
+      id: '/app/settlement'
+      path: '/settlement'
+      fullPath: '/app/settlement'
+      preLoaderRoute: typeof AppSettlementRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/trade': {
       id: '/app/trade'
       path: '/trade'
@@ -247,20 +285,24 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppAnalysisRoute: typeof AppAnalysisRoute
   AppMarketRoute: typeof AppMarketRoute
   AppOrdersRoute: typeof AppOrdersRoute
   AppPortfolioRoute: typeof AppPortfolioRoute
   AppRoundsRoute: typeof AppRoundsRoute
+  AppSettlementRoute: typeof AppSettlementRoute
   AppTradeRoute: typeof AppTradeRoute
   AppIndexRoute: typeof AppIndexRoute
   AppStockSymbolRoute: typeof AppStockSymbolRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAnalysisRoute: AppAnalysisRoute,
   AppMarketRoute: AppMarketRoute,
   AppOrdersRoute: AppOrdersRoute,
   AppPortfolioRoute: AppPortfolioRoute,
   AppRoundsRoute: AppRoundsRoute,
+  AppSettlementRoute: AppSettlementRoute,
   AppTradeRoute: AppTradeRoute,
   AppIndexRoute: AppIndexRoute,
   AppStockSymbolRoute: AppStockSymbolRoute,
