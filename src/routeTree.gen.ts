@@ -12,12 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAnalysisRouteImport } from './routes/app.analysis'
 import { Route as AppMarketRouteImport } from './routes/app.market'
 import { Route as AppOrdersRouteImport } from './routes/app.orders'
 import { Route as AppPortfolioRouteImport } from './routes/app.portfolio'
+import { Route as AppRiskRouteImport } from './routes/app.risk'
 import { Route as AppRoundsRouteImport } from './routes/app.rounds'
 import { Route as AppSettlementRouteImport } from './routes/app.settlement'
 import { Route as AppTradeRouteImport } from './routes/app.trade'
@@ -36,6 +38,11 @@ const AppRoute = AppRouteImport.update({
 const HowItWorksRoute = HowItWorksRouteImport.update({
   id: '/how-it-works',
   path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -68,6 +75,11 @@ const AppPortfolioRoute = AppPortfolioRouteImport.update({
   path: '/portfolio',
   getParentRoute: () => AppRoute,
 } as any)
+const AppRiskRoute = AppRiskRouteImport.update({
+  id: '/risk',
+  path: '/risk',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppRoundsRoute = AppRoundsRouteImport.update({
   id: '/rounds',
   path: '/rounds',
@@ -93,11 +105,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/how-it-works': typeof HowItWorksRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/app/analysis': typeof AppAnalysisRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
+  '/app/risk': typeof AppRiskRoute
   '/app/rounds': typeof AppRoundsRoute
   '/app/settlement': typeof AppSettlementRoute
   '/app/trade': typeof AppTradeRoute
@@ -107,11 +121,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/app/analysis': typeof AppAnalysisRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
+  '/app/risk': typeof AppRiskRoute
   '/app/rounds': typeof AppRoundsRoute
   '/app/settlement': typeof AppSettlementRoute
   '/app/trade': typeof AppTradeRoute
@@ -123,11 +139,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/how-it-works': typeof HowItWorksRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/app/analysis': typeof AppAnalysisRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
+  '/app/risk': typeof AppRiskRoute
   '/app/rounds': typeof AppRoundsRoute
   '/app/settlement': typeof AppSettlementRoute
   '/app/trade': typeof AppTradeRoute
@@ -140,11 +158,13 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/how-it-works'
+    | '/leaderboard'
     | '/login'
     | '/app/analysis'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
+    | '/app/risk'
     | '/app/rounds'
     | '/app/settlement'
     | '/app/trade'
@@ -154,11 +174,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/how-it-works'
+    | '/leaderboard'
     | '/login'
     | '/app/analysis'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
+    | '/app/risk'
     | '/app/rounds'
     | '/app/settlement'
     | '/app/trade'
@@ -169,11 +191,13 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/how-it-works'
+    | '/leaderboard'
     | '/login'
     | '/app/analysis'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
+    | '/app/risk'
     | '/app/rounds'
     | '/app/settlement'
     | '/app/trade'
@@ -185,6 +209,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   HowItWorksRoute: typeof HowItWorksRoute
+  LeaderboardRoute: typeof LeaderboardRoute
   LoginRoute: typeof LoginRoute
 }
 
@@ -209,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/how-it-works'
       fullPath: '/how-it-works'
       preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -253,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppPortfolioRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/risk': {
+      id: '/app/risk'
+      path: '/risk'
+      fullPath: '/app/risk'
+      preLoaderRoute: typeof AppRiskRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/rounds': {
       id: '/app/rounds'
       path: '/rounds'
@@ -289,6 +328,7 @@ interface AppRouteChildren {
   AppMarketRoute: typeof AppMarketRoute
   AppOrdersRoute: typeof AppOrdersRoute
   AppPortfolioRoute: typeof AppPortfolioRoute
+  AppRiskRoute: typeof AppRiskRoute
   AppRoundsRoute: typeof AppRoundsRoute
   AppSettlementRoute: typeof AppSettlementRoute
   AppTradeRoute: typeof AppTradeRoute
@@ -301,6 +341,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppMarketRoute: AppMarketRoute,
   AppOrdersRoute: AppOrdersRoute,
   AppPortfolioRoute: AppPortfolioRoute,
+  AppRiskRoute: AppRiskRoute,
   AppRoundsRoute: AppRoundsRoute,
   AppSettlementRoute: AppSettlementRoute,
   AppTradeRoute: AppTradeRoute,
@@ -314,6 +355,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   HowItWorksRoute: HowItWorksRoute,
+  LeaderboardRoute: LeaderboardRoute,
   LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
