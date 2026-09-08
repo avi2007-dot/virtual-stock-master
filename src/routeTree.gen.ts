@@ -10,14 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAnalysisRouteImport } from './routes/app.analysis'
+import { Route as AppAssessmentRouteImport } from './routes/app.assessment'
 import { Route as AppMarketRouteImport } from './routes/app.market'
 import { Route as AppOrdersRouteImport } from './routes/app.orders'
 import { Route as AppPortfolioRouteImport } from './routes/app.portfolio'
+import { Route as AppRiskRouteImport } from './routes/app.risk'
 import { Route as AppRoundsRouteImport } from './routes/app.rounds'
 import { Route as AppSettlementRouteImport } from './routes/app.settlement'
 import { Route as AppTradeRouteImport } from './routes/app.trade'
@@ -28,6 +32,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppRoute = AppRouteImport.update({
   id: '/app',
   path: '/app',
@@ -36,6 +45,11 @@ const AppRoute = AppRouteImport.update({
 const HowItWorksRoute = HowItWorksRouteImport.update({
   id: '/how-it-works',
   path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -53,6 +67,11 @@ const AppAnalysisRoute = AppAnalysisRouteImport.update({
   path: '/analysis',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAssessmentRoute = AppAssessmentRouteImport.update({
+  id: '/assessment',
+  path: '/assessment',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppMarketRoute = AppMarketRouteImport.update({
   id: '/market',
   path: '/market',
@@ -66,6 +85,11 @@ const AppOrdersRoute = AppOrdersRouteImport.update({
 const AppPortfolioRoute = AppPortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRiskRoute = AppRiskRouteImport.update({
+  id: '/risk',
+  path: '/risk',
   getParentRoute: () => AppRoute,
 } as any)
 const AppRoundsRoute = AppRoundsRouteImport.update({
@@ -91,13 +115,17 @@ const AppStockSymbolRoute = AppStockSymbolRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/app': typeof AppRouteWithChildren
   '/how-it-works': typeof HowItWorksRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/app/analysis': typeof AppAnalysisRoute
+  '/app/assessment': typeof AppAssessmentRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
+  '/app/risk': typeof AppRiskRoute
   '/app/rounds': typeof AppRoundsRoute
   '/app/settlement': typeof AppSettlementRoute
   '/app/trade': typeof AppTradeRoute
@@ -106,12 +134,16 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/app/analysis': typeof AppAnalysisRoute
+  '/app/assessment': typeof AppAssessmentRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
+  '/app/risk': typeof AppRiskRoute
   '/app/rounds': typeof AppRoundsRoute
   '/app/settlement': typeof AppSettlementRoute
   '/app/trade': typeof AppTradeRoute
@@ -121,13 +153,17 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/app': typeof AppRouteWithChildren
   '/how-it-works': typeof HowItWorksRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/app/analysis': typeof AppAnalysisRoute
+  '/app/assessment': typeof AppAssessmentRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
+  '/app/risk': typeof AppRiskRoute
   '/app/rounds': typeof AppRoundsRoute
   '/app/settlement': typeof AppSettlementRoute
   '/app/trade': typeof AppTradeRoute
@@ -138,13 +174,17 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/app'
     | '/how-it-works'
+    | '/leaderboard'
     | '/login'
     | '/app/analysis'
+    | '/app/assessment'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
+    | '/app/risk'
     | '/app/rounds'
     | '/app/settlement'
     | '/app/trade'
@@ -153,12 +193,16 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/how-it-works'
+    | '/leaderboard'
     | '/login'
     | '/app/analysis'
+    | '/app/assessment'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
+    | '/app/risk'
     | '/app/rounds'
     | '/app/settlement'
     | '/app/trade'
@@ -167,13 +211,17 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/app'
     | '/how-it-works'
+    | '/leaderboard'
     | '/login'
     | '/app/analysis'
+    | '/app/assessment'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
+    | '/app/risk'
     | '/app/rounds'
     | '/app/settlement'
     | '/app/trade'
@@ -183,8 +231,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   AppRoute: typeof AppRouteWithChildren
   HowItWorksRoute: typeof HowItWorksRoute
+  LeaderboardRoute: typeof LeaderboardRoute
   LoginRoute: typeof LoginRoute
 }
 
@@ -195,6 +245,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app': {
@@ -209,6 +266,13 @@ declare module '@tanstack/react-router' {
       path: '/how-it-works'
       fullPath: '/how-it-works'
       preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -232,6 +296,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAnalysisRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/assessment': {
+      id: '/app/assessment'
+      path: '/assessment'
+      fullPath: '/app/assessment'
+      preLoaderRoute: typeof AppAssessmentRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/market': {
       id: '/app/market'
       path: '/market'
@@ -251,6 +322,13 @@ declare module '@tanstack/react-router' {
       path: '/portfolio'
       fullPath: '/app/portfolio'
       preLoaderRoute: typeof AppPortfolioRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/risk': {
+      id: '/app/risk'
+      path: '/risk'
+      fullPath: '/app/risk'
+      preLoaderRoute: typeof AppRiskRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/rounds': {
@@ -286,9 +364,11 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppAnalysisRoute: typeof AppAnalysisRoute
+  AppAssessmentRoute: typeof AppAssessmentRoute
   AppMarketRoute: typeof AppMarketRoute
   AppOrdersRoute: typeof AppOrdersRoute
   AppPortfolioRoute: typeof AppPortfolioRoute
+  AppRiskRoute: typeof AppRiskRoute
   AppRoundsRoute: typeof AppRoundsRoute
   AppSettlementRoute: typeof AppSettlementRoute
   AppTradeRoute: typeof AppTradeRoute
@@ -298,9 +378,11 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppAnalysisRoute: AppAnalysisRoute,
+  AppAssessmentRoute: AppAssessmentRoute,
   AppMarketRoute: AppMarketRoute,
   AppOrdersRoute: AppOrdersRoute,
   AppPortfolioRoute: AppPortfolioRoute,
+  AppRiskRoute: AppRiskRoute,
   AppRoundsRoute: AppRoundsRoute,
   AppSettlementRoute: AppSettlementRoute,
   AppTradeRoute: AppTradeRoute,
@@ -312,8 +394,10 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   AppRoute: AppRouteWithChildren,
   HowItWorksRoute: HowItWorksRoute,
+  LeaderboardRoute: LeaderboardRoute,
   LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
