@@ -16,6 +16,7 @@ import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAnalysisRouteImport } from './routes/app.analysis'
+import { Route as AppAssessmentRouteImport } from './routes/app.assessment'
 import { Route as AppMarketRouteImport } from './routes/app.market'
 import { Route as AppOrdersRouteImport } from './routes/app.orders'
 import { Route as AppPortfolioRouteImport } from './routes/app.portfolio'
@@ -58,6 +59,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
 const AppAnalysisRoute = AppAnalysisRouteImport.update({
   id: '/analysis',
   path: '/analysis',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAssessmentRoute = AppAssessmentRouteImport.update({
+  id: '/assessment',
+  path: '/assessment',
   getParentRoute: () => AppRoute,
 } as any)
 const AppMarketRoute = AppMarketRouteImport.update({
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/app/analysis': typeof AppAnalysisRoute
+  '/app/assessment': typeof AppAssessmentRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/app/analysis': typeof AppAnalysisRoute
+  '/app/assessment': typeof AppAssessmentRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/app/analysis': typeof AppAnalysisRoute
+  '/app/assessment': typeof AppAssessmentRoute
   '/app/market': typeof AppMarketRoute
   '/app/orders': typeof AppOrdersRoute
   '/app/portfolio': typeof AppPortfolioRoute
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/leaderboard'
     | '/login'
     | '/app/analysis'
+    | '/app/assessment'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/leaderboard'
     | '/login'
     | '/app/analysis'
+    | '/app/assessment'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
@@ -194,6 +205,7 @@ export interface FileRouteTypes {
     | '/leaderboard'
     | '/login'
     | '/app/analysis'
+    | '/app/assessment'
     | '/app/market'
     | '/app/orders'
     | '/app/portfolio'
@@ -264,6 +276,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAnalysisRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/assessment': {
+      id: '/app/assessment'
+      path: '/assessment'
+      fullPath: '/app/assessment'
+      preLoaderRoute: typeof AppAssessmentRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/market': {
       id: '/app/market'
       path: '/market'
@@ -325,6 +344,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppAnalysisRoute: typeof AppAnalysisRoute
+  AppAssessmentRoute: typeof AppAssessmentRoute
   AppMarketRoute: typeof AppMarketRoute
   AppOrdersRoute: typeof AppOrdersRoute
   AppPortfolioRoute: typeof AppPortfolioRoute
@@ -338,6 +358,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppAnalysisRoute: AppAnalysisRoute,
+  AppAssessmentRoute: AppAssessmentRoute,
   AppMarketRoute: AppMarketRoute,
   AppOrdersRoute: AppOrdersRoute,
   AppPortfolioRoute: AppPortfolioRoute,

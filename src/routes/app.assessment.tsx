@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { createFileRoute as _unused } from "@tanstack/react-router";
+
 import { useSim, portfolioSummary, marksTotal } from "@/lib/sim/store";
 import { PageHead, Stat } from "@/components/sim/Shell";
 import { inr, pct, signed } from "@/lib/sim/format";
